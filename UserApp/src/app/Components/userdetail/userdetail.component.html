@@ -1,0 +1,137 @@
+<main role="main" class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+      <div class="lh-100">
+        <h5 class="mb-0 text-white lh-100">Article point</h5>
+        <small>Assignment2</small>
+      </div>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+      <div class="media text-muted pt-3" *ngFor="let post of allData;let i = index;">
+        <div  class="mr-2 rounded imageDisplay"><span>{{currentPage+i+1}}</span></div>
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">{{post.title}}</strong>
+          </div>
+          <p class="media-body pb-3 mb-0 medium lh-125 ">
+            <strong class="d-block text-gray-dark">
+                @{{post.userDetail.name}}</strong>
+            <span *ngIf="post.body.length > 120">{{post.body|slice:0:250}}...</span>
+            <span *ngIf="post.body.length <=120">{{post.body}}</span><br/>
+            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#readMore" class="d-flex " style="float:right" (click)="readmore(post)">Read more</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li  *ngFor="let number of pagination" class="page-item" [class.active]="" (click)="showPage(number)"><a class="page-link" >{{number+1}}</a></li>
+        </ul>
+      </nav>
+  </main>
+  
+
+  <div *ngIf="currentPost " class="modal " id="readMore">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <div class="imageName2">
+                <span >
+                   {{shortName(currentPost.userDetail.name)}}
+                </span>
+            </div>
+            <strong class="modal-title">{{currentPost.userDetail.name}}</strong>
+            
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <div class="modal-body mainContent">
+            <h5 class="modal-title">{{currentPost.title}}</h5>
+            <p class="d-block text-gray-dark">{{currentPost.body}}</p>
+        </div>
+        <div class="modal-body">
+            <div class="panel panel-default widget">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <h5 class="panel-title">
+                        Recent Comments</h5>
+                    <span class="label label-info">
+                        Total comments : {{currentComments.length}}</span>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let comment of currentComments;let i=index;">
+                            <div class="row">
+                                <div class="imageName">
+                                    <span >
+                                       {{shortName(comment.name)}}
+                                    </span>
+                                </div>
+                                <div class="col-md-11">
+                                    <div>
+                                        <div class="mic-info">
+                                           <a>{{comment.name}}</a> on {{comment.created_at|date:'MMM d, yyyy'}}
+                                        </div>
+                                    </div>
+                                    <div class="comment-text">
+                                        {{comment.body}}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a *ngIf="!commentEnable" (click)="authForm.reset();getUser()" data-toggle="modal" data-target="#authenticate" class="btn btn-primary btn-sm btn-block" role="button" ><span class="glyphicon glyphicon-refresh"></span>Add Comment</a>
+                    <div *ngIf="showAlert!=''" (click)="showAlert=''" class="alert alert-dark" role="alert">
+                        {{showAlert}}
+                      </div>
+                    <div *ngIf="commentEnable" class="form-group commentBox">
+                        <textarea #ipComment class="form-control" [rows]="2" [(ngModel)]="inputComment"></textarea>
+                        <button  [disabled]="!inputComment.length" class="btn btn-primary btn-sm" (click)="sendComment()">Send</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+  
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal " id="authenticate"  >
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+            <strong class="modal-title">Please provide details</strong>
+        </div>
+        <form [formGroup]="authForm" (ngSubmit)="authenticate(authForm.value)">
+        <div class="modal-body ">
+            <div class="form-group">
+                <label for="email">Name:</label>
+                <input type="text" class="form-control" formControlName = "name" placeholder="Enter Name" id="name">
+                <p *ngIf="f.name.invalid && f.name.touched" style="color:red;">Invalid Name</p>
+              </div>
+                <div class="form-group">
+                  <label for="email">Email address:</label>
+                  <input type="email" class="form-control" formControlName = "email" placeholder="Enter email" id="email">
+                  <p *ngIf="f.email.invalid && f.email.touched" style="color:red;">Invalid email</p>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" [disabled]="authForm.invalid" class="btn btn-success" >Submit</button>
+          <button class="btn btn-danger" id="closeIt" data-dismiss="modal">Close</button>
+        </div>
+
+        </form>
+
+  
+      </div>
+    </div>
+  </div>

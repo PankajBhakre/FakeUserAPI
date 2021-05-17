@@ -1,0 +1,139 @@
+h2{
+    color: white;
+
+}
+.card {
+    width:100%;
+    margin:5px;
+    display:inline-block;
+}
+.card .card-img-top{
+    height:50px;
+    width:50px;
+    background:red;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.mainContent {
+    background:rgb(220, 222, 255);
+    
+}
+
+ .panel-body { 
+     padding:0px; 
+    }
+
+ .list-group { 
+     margin-bottom: 0; 
+    }
+
+ .panel-title {
+      display:inline 
+    }
+
+ .label-info { 
+     float: right; 
+    }
+
+ li.list-group-item {
+     border-radius: 0;border: 0;border-top: 1px solid #ddd;
+    }
+
+ li.list-group-item:hover { 
+     background-color: rgba(86,61,124,.1);
+     }
+
+ .mic-info { 
+     color: #666666;
+     font-size: 15px;
+     font-weight: 500;
+     }
+
+ .action {
+      margin-top:5px;
+     }
+
+ .comment-text { 
+     font-size: 12px;
+    }
+
+ .btn-block { 
+     border-top-left-radius:0px;border-top-right-radius:0px; 
+    }
+
+ .imageName{
+     background-color: rgb(84, 84, 196);
+     color:white;
+     width:50px;
+     height:50px;
+     border-radius: 50%;
+     border:2px solid white;
+     color:white;
+     display: inline-flex;
+     justify-content: center;
+ }
+ .imageName span{
+    position: relative;
+    margin:auto;
+    top:0;
+    bottom:0;
+}
+ .imageDisplay{
+     width:50px;
+     height:50px;
+     border-radius: 50%;
+     background-color: blue;
+     color:white;
+     display: inline-flex;
+     justify-content: center;
+ }
+ .imageDisplay span{
+     position: relative;
+     margin:auto;
+     top:0;
+     bottom:0;
+ }
+
+ .diplayInfo{
+     margin:10px 0 5px 5px;
+     width:100%;
+     display: inline-flex;
+ }
+ .commentBox{
+     margin-top:15px;
+     display: inline;
+     justify-content: center;
+     width:100%;
+ }
+ textarea{
+     resize: none;
+     margin:10px 0 10px 0;
+ }
+ .commentBox button{
+        position: relative;
+     margin:auto;
+     top:0;
+     bottom:0;
+     width:100%;
+ }
+ .imageName2{
+    background-color: rgb(241, 165, 65);
+    color:white;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    border:2px solid white;
+    color:white;
+    display: inline-flex;
+    justify-content: center;
+}
+.imageName2 span{
+   position: relative;
+   margin:auto;
+   top:0;
+   bottom:0;
+}
+ .modal-header strong{
+     margin:10px 0 0 5px;
+ }

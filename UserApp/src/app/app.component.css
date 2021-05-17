@@ -1,0 +1,12 @@
+nav {
+    width:100%;
+    min-height: 10vh;
+    color:white
+}
+
+#mainView{
+    width:100;
+    min-height: 90vh;
+    background-color: #1e3250;
+    overflow-y: auto;
+}

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="profile">
+        <div class="profile-container">
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane fade active show" id="profile-followers">
+                                <div class="list-group">
+                                    <div *ngFor="let user of allUsers.data" class="list-group-item d-flex align-items-center">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="50px" class="rounded-sm ml-n2" />
+                                        <div class="flex-fill pl-3 pr-3">
+                                            <div><a href="#" class="text-dark font-weight-600">{{user.name}}</a></div>
+                                            <div class="text-muted fs-13px">{{user.email}}</div>
+                                        </div>
+                                        <a  class="btn btn-outline-primary">Details</a>
+                                    </div>
+                                </div>
+                                <div class="text-center p-3">
+                                    <a href="#" class="text-dark text-decoration-none">Show more <b class="caret"></b></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav *ngIf="allUsers.data" aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+               <li class="page-item" ><a class="page-link" (click)="pageMove(pages,'back')">Previous</a></li>
+              <li *ngFor="let page of pages;let i=index" class="page-item" [class.active]="" (click)="showList(page)"><a class="page-link" >{{page}}</a></li>
+              <li class="page-item" [class.active]="" ><a class="page-link" (click)="pageMove(pages,'forward')">Next</a></li>
+              
+            </ul>
+        </nav>
+    </div>
+</div>
